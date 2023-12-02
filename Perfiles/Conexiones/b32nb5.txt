@@ -1,0 +1,3 @@
+aceptado,Usuario1,Usuario2
+Usuario2,Usuario1,16:06,test01
+Usuario1,Usuario2,16:16,test02
