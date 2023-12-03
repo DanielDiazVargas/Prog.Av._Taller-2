@@ -1,5 +1,8 @@
 package cl.ucn.disc.pa.Taller2.Model;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class ContenedorListaNexoSimple {
     private ListaNexoSimple[] vectorMensajes;
     private String[][] contactos;
@@ -17,6 +20,21 @@ public class ContenedorListaNexoSimple {
         this.contactos[cantidadListas][1] = estado;
         this.contactos[cantidadListas][2] = codigo;
         this.vectorMensajes[cantidadListas] = mensajes;
+        this.cantidadListas++;
+    }
+
+    public void agregarMensaje(int posicion, Perfil perfil, String mensaje) {
+        String codigo = contactos[posicion][2];
+        String destinatario = contactos[posicion][0];
+        String remitente = perfil.getNombreDeUsuario();
+        LocalTime horaDeEnvio = LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+        Mensaje nuevoMensaje = new Mensaje(codigo, destinatario, remitente, horaDeEnvio, mensaje);
+        this.vectorMensajes[posicion].agregar(nuevoMensaje);
+    }
+
+    public ListaNexoSimple[] getListaNexoSimple() {
+        return vectorMensajes;
     }
 
     public String[][] getContactos() {

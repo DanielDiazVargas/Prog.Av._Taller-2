@@ -19,6 +19,10 @@ public class NodoDoble {
         return mensajes;
     }
 
+    public void setListaMensajes(ContenedorListaNexoSimple contenedorListaNexoSimple) {
+        this.mensajes = contenedorListaNexoSimple;
+    }
+
     public NodoDoble getSiguiente() {
         return siguiente;
     }

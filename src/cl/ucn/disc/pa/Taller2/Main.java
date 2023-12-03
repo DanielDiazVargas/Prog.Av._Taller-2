@@ -7,6 +7,7 @@ import ucn.*;
 
 import java.io.*;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Main {
     public static Sistema sistemaApp;
@@ -177,7 +178,7 @@ public class Main {
         }
     }
 
-    public static void menu(Perfil perfil) throws IOException {
+    public static void menu(Perfil perfil) throws Exception {
         String opcion;
         boolean menu = true;
 
@@ -206,7 +207,7 @@ public class Main {
         }
     }
 
-    public static void enviarMensaje(Perfil perfil) throws IOException {
+    public static void enviarMensaje(Perfil perfil) throws Exception {
         StdOut.println("""
                     ::::::::::::::::::::::::::::::
                            *ENVIAR MENSAJE*
@@ -215,7 +216,7 @@ public class Main {
         StdOut.print("=> ");
         String nombre = StdIn.readString();
 
-        if (nombre == perfil.getNombreDeUsuario()) {
+        if (Objects.equals(nombre, perfil.getNombreDeUsuario())) {
             StdOut.println("""
                     ::::::::::::::::::::::::::::::
                            *ENVIAR MENSAJE*
@@ -241,28 +242,23 @@ public class Main {
             return;
         }
 
-        ArchivoEntrada archivoEntrada = null;
+        ContenedorListaNexoSimple listaNexoSimple = perfiles.obtenerContenedor(perfil);
+        String[][] contactos = listaNexoSimple.getContactos();
+        String codigo = null;
 
-        String nombreArchivo = "Perfiles/Conexiones/" + perfil.getNombreDeUsuario() + "-" + nombre + ".txt";
-        File file = new File(nombreArchivo);
-        if (file.exists()) {
-            archivoEntrada = new ArchivoEntrada(nombreArchivo);
-        }else {
-            nombreArchivo = "Perfiles/Conexiones/" + nombre + "-" + perfil.getNombreDeUsuario() + ".txt";
-            file = new File(nombreArchivo);
-            archivoEntrada = new ArchivoEntrada(nombreArchivo);
-        }
+        for (String[] contacto : contactos) {
+            if (Objects.equals(contacto[0], nombre)) {
+                if (Objects.equals(contacto[1], "aceptada")) {
+                    StdOut.println("""
+                            ::::::::::::::::::::::::::::::
+                                   *ENVIAR MENSAJE*
+                            La solicitud de conexion no ha sido aceptada
+                            ::::::::::::::::::::::::::::::""");
+                    return;
+                }
 
-        while (!archivoEntrada.isEndFile()) {
-            Registro registro = archivoEntrada.getRegistro();
-            String estado = registro.getString();
-            if (estado != "aceptada") {
-                StdOut.println("""
-                    ::::::::::::::::::::::::::::::
-                           *ENVIAR MENSAJE*
-                    La solicitud de conexion no ha sido aceptada
-                    ::::::::::::::::::::::::::::::""");
-                return;
+                codigo = contacto[2];
+                break;
             }
         }
 
@@ -273,6 +269,9 @@ public class Main {
                     ::::::::::::::::::::::::::::::""");
         StdOut.print("=> ");
         String mensaje = StdIn.readString();
+
+        perfiles = sistemaApp.enviarMensaje(perfiles, perfil, mensaje, nombre);
+        escrituraArchivos();
     }
 
     public static void verContactos(Perfil perfil) {
@@ -280,7 +279,7 @@ public class Main {
 
         StdOut.println("""
                     ::::::::::::::::::::::::::::::
-                              *CONSTACTOS*""");
+                              *CONTACTOS*""");
 
         for (int i = 0; i < contactos.length; i++) {
             if (contactos[i][0] != null) {
@@ -307,9 +306,9 @@ public class Main {
     public static ListaNexoDoble lecturaArchivos(ListaNexoDoble perfiles) throws IOException {
         try {
             ArchivoEntrada archivoEntrada = new ArchivoEntrada("Perfiles/Perfiles.txt");
-            ListaNexoSimple mensajes = new ListaNexoSimple();
 
             while (!archivoEntrada.isEndFile()) {
+                ListaNexoSimple mensajes = new ListaNexoSimple();
                 Registro nuevoPerfil = archivoEntrada.getRegistro();
                 String nombreUsuario = nuevoPerfil.getString();
                 String correo = nuevoPerfil.getString();

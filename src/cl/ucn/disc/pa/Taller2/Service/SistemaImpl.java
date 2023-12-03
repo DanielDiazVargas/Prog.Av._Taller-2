@@ -35,7 +35,8 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void enviarMensaje() {
-
+    public ListaNexoDoble enviarMensaje(ListaNexoDoble lista, Perfil perfil, String mensaje, String destinatario) {
+        lista.agregarMensaje(perfil, mensaje, destinatario);
+        return lista;
     }
 }

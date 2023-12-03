@@ -10,6 +10,5 @@ public interface Sistema {
     Perfil iniciarSesion(ListaNexoDoble perfiles, String nombreUsuario, String contrasenia);
     void aceptarConexcion();
     void rechazarConexion();
-    void enviarMensaje();
-
+    ListaNexoDoble enviarMensaje(ListaNexoDoble lista, Perfil perfil, String codigo, String mensaje);
 }

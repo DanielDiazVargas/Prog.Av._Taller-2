@@ -26,6 +26,43 @@ public class ListaNexoDoble {
         this.cola = nuevo;
     }
 
+    public void agregarMensaje(Perfil perfil, String mensaje, String destinatario) {
+        ContenedorListaNexoSimple contenedor = obtenerContenedor(perfil);
+
+        int posicion = -1;
+        String[][] contactosAxu = contenedor.getContactos();
+
+        for (int i = 0; i < tamanioPerfiles(); i++) {
+            if (Objects.equals(contactosAxu[i][0], destinatario)) {
+                posicion = i;
+                break;
+            }
+        }
+
+        for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
+            if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), perfil.getNombreDeUsuario())) {
+                contenedor.agregarMensaje(posicion, perfil, mensaje);
+            }
+        }
+
+        for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
+            aux.setListaMensajes(contenedor);
+        }
+    }
+
+    public int obtenerPosicion(String nombre) {
+        int contador = 0;
+        for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
+            if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), nombre)) {
+                return contador;
+            }
+
+            contador++;
+        }
+
+        return -1;
+    }
+
     public Perfil obtenerPerfilPosicion(int posicion){
         NodoDoble aux = this.cabeza;
 

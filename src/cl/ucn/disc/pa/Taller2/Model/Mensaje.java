@@ -14,7 +14,7 @@ public class Mensaje {
         this.codigo = codigo;
         this.destinatario = destinatario;
         this.remitente = remitente;
-        this.horaDeEnvio = LocalTime.parse(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+        this.horaDeEnvio = LocalTime.parse(horaDeEnvio.format(DateTimeFormatter.ofPattern("HH:mm")));
         this.mensaje = mensaje;
     }
 
