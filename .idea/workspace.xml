@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34367d71-620e-4d48-918a-b893edf485ea" name="Changes" comment="Fist Commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/StdUCN_7_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Prog.Av._Taller-2.iml" afterDir="false" />
+    <list default="true" id="34367d71-620e-4d48-918a-b893edf485ea" name="Changes" comment="Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ContenedorListaNexoSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ContenedorListaNexoSimple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/Mensaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/Mensaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/NodoDoble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/NodoDoble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Service/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Service/Sistema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Service/SistemaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Service/SistemaImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,18 +35,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultPlantUmlFileTemplate": "UML Class",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/ddiaz/IdeaProjects/Prog.Av._Taller-2",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ddiaz/IdeaProjects/Prog.Av._Taller-2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ddiaz\IdeaProjects\Prog.Av._Taller-2\Perfiles\Conexiones" />
@@ -89,7 +77,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701540323379</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated">
+      <created>1701569233819</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701569233819</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,19 +100,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fist Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fist Commit" />
+    <MESSAGE value="Updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Main.java</url>
-          <line>305</line>
-          <properties class="cl.ucn.disc.pa.Taller2.Main" method="lecturaArchivos">
+          <url>file://$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java</url>
+          <line>28</line>
+          <properties class="cl.ucn.disc.pa.Taller2.Model.ListaNexoDoble" method="agregarMensaje">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

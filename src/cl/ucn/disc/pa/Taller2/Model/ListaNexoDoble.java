@@ -27,26 +27,66 @@ public class ListaNexoDoble {
     }
 
     public void agregarMensaje(Perfil perfil, String mensaje, String destinatario) {
-        ContenedorListaNexoSimple contenedor = obtenerContenedor(perfil);
+        ContenedorListaNexoSimple contenedor1 = obtenerContenedor(perfil);
+        ContenedorListaNexoSimple contenedor2 = obtenerContenedor(obtenerPerfilNombre(destinatario));
 
-        int posicion = -1;
-        String[][] contactosAxu = contenedor.getContactos();
+        int posicion1 = -1;
+        int posicion2 = -1;
+        String[][] contactos1 = contenedor1.getContactos();
+        String[][] contactos2 = contenedor2.getContactos();
+        boolean boolean1 = false;
+        boolean boolean2 = false;
 
         for (int i = 0; i < tamanioPerfiles(); i++) {
-            if (Objects.equals(contactosAxu[i][0], destinatario)) {
-                posicion = i;
+            if (Objects.equals(contactos1[i][0], destinatario)) {
+                posicion1 = i;
+                boolean1 = true;
+            }
+
+            if (Objects.equals(contactos2[i][0], perfil.getNombreDeUsuario())) {
+                posicion2 = i;
+                boolean2 = true;
+            }
+
+            if (boolean1 && boolean2) {
+                boolean1 = false;
+                boolean2 = false;
                 break;
             }
         }
 
         for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
             if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), perfil.getNombreDeUsuario())) {
-                contenedor.agregarMensaje(posicion, perfil, mensaje);
+                contenedor1.agregarMensaje(posicion1, perfil, mensaje);
+                boolean1 = true;
+            }
+
+            if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), destinatario)) {
+                contenedor2.agregarMensaje(posicion2, obtenerPerfilNombre(destinatario), mensaje);
+                boolean2 = true;
+            }
+
+            if (boolean1 && boolean2) {
+                boolean1 = false;
+                boolean2 = false;
+                break;
             }
         }
 
         for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
-            aux.setListaMensajes(contenedor);
+            if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), perfil.getNombreDeUsuario())) {
+                aux.setListaMensajes(contenedor1);
+                boolean1 = true;
+            }
+
+            if (Objects.equals(aux.getPerfil().getNombreDeUsuario(), destinatario)) {
+                aux.setListaMensajes(contenedor2);
+                boolean2 = true;
+            }
+
+            if (boolean1 && boolean2) {
+                return;
+            }
         }
     }
 

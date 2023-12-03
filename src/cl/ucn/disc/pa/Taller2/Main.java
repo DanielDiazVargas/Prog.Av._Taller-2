@@ -20,7 +20,7 @@ public class Main {
         escrituraArchivos();
     }
 
-    public static void configuracion() throws IOException {
+    public static void configuracion() {
         sistemaApp = instalarSistema();
     }
 
@@ -189,9 +189,10 @@ public class Main {
                     Elija una opcion:
                     [1] Enviar Mensaje
                     [2] Ver Contactos
-                    [3] Solicitudes Pendientes
-                    [4] Buscar Perfiles
-                    [5] Cerrar Sesion
+                    [3] Historial de Mensajes
+                    [4] Solicitudes Pendientes
+                    [5] Buscar Perfiles
+                    [6] Cerrar Sesion
                     ::::::::::::::::::::::::::::::""");
             StdOut.print("=> ");
             opcion = StdIn.readString();
@@ -199,9 +200,10 @@ public class Main {
             switch (opcion) {
                 case "1" -> enviarMensaje(perfil);
                 case "2" -> verContactos(perfil);
-                case "3" -> solitudesPendientes();
-                case "4" -> buscarPerfiles();
-                case "5" -> menu = false;
+                case "3" -> historialMensajes(perfil);
+                case "4" -> solitudesPendientes();
+                case "5" -> buscarPerfiles();
+                case "6" -> menu = false;
                 default -> StdOut.println("¡Opcion no valida!");
             }
         }
@@ -244,7 +246,8 @@ public class Main {
 
         ContenedorListaNexoSimple listaNexoSimple = perfiles.obtenerContenedor(perfil);
         String[][] contactos = listaNexoSimple.getContactos();
-        String codigo = null;
+
+        boolean esContacto = false;
 
         for (String[] contacto : contactos) {
             if (Objects.equals(contacto[0], nombre)) {
@@ -256,10 +259,35 @@ public class Main {
                             ::::::::::::::::::::::::::::::""");
                     return;
                 }
-
-                codigo = contacto[2];
+                esContacto = true;
                 break;
             }
+        }
+
+        if (!esContacto) {
+            String opcion;
+            boolean menu = true;
+
+            while (menu) {
+                StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                           *ENVIAR MENSAJE*
+                    El usuario ingresado no es contactos suyo
+                    ¿Desea enviar una solicitud de conexion?
+                    [1] Si
+                    [2] No
+                    ::::::::::::::::::::::::::::::""");
+                StdOut.print("=> ");
+                opcion = StdIn.readString();
+
+                switch (opcion) {
+                    case "1" -> StdOut.println("Pendiente...");
+                    case "2" -> menu = false;
+                    default -> StdOut.println("¡Opcion no valida!");
+                }
+            }
+
+            return;
         }
 
         StdOut.println("""
@@ -293,6 +321,10 @@ public class Main {
         }
 
         StdOut.println("::::::::::::::::::::::::::::::");
+    }
+
+    public static void historialMensajes(Perfil perfil) {
+
     }
 
     public static void solitudesPendientes() {
