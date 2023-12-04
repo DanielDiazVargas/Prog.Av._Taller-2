@@ -123,6 +123,16 @@ public class ListaNexoDoble {
         return null;
     }
 
+    public Perfil obtenerPerfilTipo(String tipo) {
+        for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
+            if (Objects.equals(aux.getPerfil().getTipoDePerfil(), tipo)) {
+                return aux.getPerfil();
+            }
+        }
+
+        return null;
+    }
+
     public ContenedorListaNexoSimple obtenerContenedor(Perfil perfil){
         for (NodoDoble aux = this.cabeza; aux != null; aux = aux.getSiguiente()) {
             if (aux.getPerfil().getNombreDeUsuario().equals(perfil.getNombreDeUsuario())) {

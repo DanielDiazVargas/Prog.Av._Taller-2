@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34367d71-620e-4d48-918a-b893edf485ea" name="Changes" comment="Updated">
+      <change afterPath="$PROJECT_DIR$/Perfiles/Conexiones/h38bd9.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ContenedorListaNexoSimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ContenedorListaNexoSimple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701569233819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated">
+      <created>1701631111741</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701631111741</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,19 +113,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/cl/ucn/disc/pa/Taller2/Model/ListaNexoDoble.java</url>
-          <line>28</line>
-          <properties class="cl.ucn.disc.pa.Taller2.Model.ListaNexoDoble" method="agregarMensaje">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="((NodoDoble)((ListaNexoDoble)Main.perfiles).cabeza).siguiente" custom="cl.ucn.disc.pa.Taller2.Model.ListaNexoDoble,cl.ucn.disc.pa.Taller2.Model.NodoDoble" />

@@ -40,4 +40,34 @@ public class ContenedorListaNexoSimple {
     public String[][] getContactos() {
         return this.contactos;
     }
+
+    public String[][] obtenerSolicitudesPendientes(){
+
+        int cantidadSolicitudesPendientes = 0;
+
+        for (int i = 0; i < cantidadListas; i++) {
+
+            if( this.contactos[i][1].equals("pendiente") ){
+                cantidadSolicitudesPendientes++;
+            }
+
+        }
+
+        System.out.println("cantidadSolicitudesPendientes: " + cantidadSolicitudesPendientes);
+
+        String [][] solicitudesPendientes = new String[cantidadSolicitudesPendientes][3];
+
+        int indiceSolicitudes = 0;
+        for (int i = 0; i < cantidadListas; i++) {
+
+            if (  contactos[i][1].equals("pendiente") ){
+                solicitudesPendientes[indiceSolicitudes] = contactos[i];
+                indiceSolicitudes++;
+            }
+
+        }
+
+        return solicitudesPendientes;
+
+    }
 }

@@ -7,6 +7,7 @@ import ucn.*;
 
 import java.io.*;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Main {
@@ -201,7 +202,7 @@ public class Main {
                 case "1" -> enviarMensaje(perfil);
                 case "2" -> verContactos(perfil);
                 case "3" -> historialMensajes(perfil);
-                case "4" -> solitudesPendientes();
+                case "4" -> solitudesPendientes(perfil);
                 case "5" -> buscarPerfiles();
                 case "6" -> menu = false;
                 default -> StdOut.println("¡Opcion no valida!");
@@ -265,28 +266,11 @@ public class Main {
         }
 
         if (!esContacto) {
-            String opcion;
-            boolean menu = true;
-
-            while (menu) {
-                StdOut.println("""
+            StdOut.println("""
                     ::::::::::::::::::::::::::::::
                            *ENVIAR MENSAJE*
                     El usuario ingresado no es contactos suyo
-                    ¿Desea enviar una solicitud de conexion?
-                    [1] Si
-                    [2] No
                     ::::::::::::::::::::::::::::::""");
-                StdOut.print("=> ");
-                opcion = StdIn.readString();
-
-                switch (opcion) {
-                    case "1" -> StdOut.println("Pendiente...");
-                    case "2" -> menu = false;
-                    default -> StdOut.println("¡Opcion no valida!");
-                }
-            }
-
             return;
         }
 
@@ -324,15 +308,131 @@ public class Main {
     }
 
     public static void historialMensajes(Perfil perfil) {
+        StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                        *HISTORIAL DE MENSAJES*
+                    Ingrese el nombre del Contacto
+                    ::::::::::::::::::::::::::::::""");
+        StdOut.print("=> ");
+        String nombre = StdIn.readString();
 
+        if (Objects.equals(nombre, perfil.getNombreDeUsuario())) {
+            StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                        *HISTORIAL DE MENSAJES*
+                    Ingreso su nombre de Usuario
+                    ::::::::::::::::::::::::::::::""");
+            return;
+        }
+
+        boolean existe = false;
+        for (int i = 0; i < perfiles.tamanioPerfiles(); i++) {
+            if (perfiles.obtenerPerfilPosicion(i).getNombreDeUsuario().equals(nombre)) {
+                existe = true;
+                break;
+            }
+        }
+
+        if (!existe) {
+            StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                        *HISTORIAL DE MENSAJES*
+                    El usuario que ingreso no existe
+                    ::::::::::::::::::::::::::::::""");
+            return;
+        }
+
+        ListaNexoSimple[] contenedor = perfiles.obtenerContenedor(perfil).getListaNexoSimple();
+        String[][] contactos = perfiles.obtenerContenedor(perfil).getContactos();
+
+        boolean esContacto = false;
+
+        for (String[] contacto : contactos) {
+            if (Objects.equals(contacto[0], nombre)) {
+                if (Objects.equals(contacto[1], "aceptada")) {
+                    StdOut.println("""
+                            ::::::::::::::::::::::::::::::
+                                *HISTORIAL DE MENSAJES*
+                            La solicitud de conexion no ha sido aceptada
+                            ::::::::::::::::::::::::::::::""");
+                    return;
+                }
+                esContacto = true;
+                break;
+            }
+        }
+
+        for (int i = 0; i < contactos.length; i++) {
+            if (contactos[i][0] != null) {
+                for (int j = 0; j < contenedor[i].tamanioMensajes(); j++) {
+                    Mensaje mensaje = contenedor[i].obtenerMensaje(j);
+                    StdOut.println("::::::::::::::::::::::::::::::" +
+                            "\nRemitente: " + mensaje.getRemitente() +
+                            "\nDestinatario: " + mensaje.getDestinatario() +
+                            "\nHora de envio: " + mensaje.getHoraDeEnvio().format(DateTimeFormatter.ofPattern("HH/mm")) +
+                            "\nMensaje: " + mensaje.getMensaje());
+                }
+            }else {
+                break;
+            }
+        }
     }
 
-    public static void solitudesPendientes() {
+    public static void solitudesPendientes(Perfil perfil) {
+        String[][] contactosPendientes = perfiles.obtenerContenedor(perfil).obtenerSolicitudesPendientes();
 
+        StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                              *Solicitudes Pendientes*""");
+
+        for (int i = 0; i < contactosPendientes.length; i++) {
+            StdOut.println("[" + (i + 1) + "] " + contactosPendientes[i][0] + " | Estado: " + contactosPendientes[i][1]);
+        }
+        StdOut.println("::::::::::::::::::::::::::::::");
     }
 
     public static void buscarPerfiles() {
+        StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                           *BUSCAR PERFILES*
+                    Ingrese opcion
+                    [1] Por nombre
+                    [2] Por tipo
+                    ::::::::::::::::::::::::::::::""");
+        StdOut.print("=> ");
+        int opcion = StdIn.readInt();
 
+        Perfil perfilEncontrado = null;
+
+        if (opcion == 1){
+            StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                           *BUSCAR PERFILES*
+                    Ingresa nombre
+                    ::::::::::::::::::::::::::::::""");
+            StdOut.print("=> ");
+            String nombre = StdIn.readString();
+            perfilEncontrado = perfiles.obtenerPerfilNombre(nombre);
+        }
+
+        if (opcion == 2){
+            StdOut.println("""
+                    ::::::::::::::::::::::::::::::
+                           *BUSCAR PERFILES*
+                    Ingresa tipo
+                    ::::::::::::::::::::::::::::::""");
+            StdOut.print("=> ");
+            String tipo = StdIn.readString();
+            perfilEncontrado = perfiles.obtenerPerfilTipo(tipo);
+
+        }
+
+
+        if (perfilEncontrado!=null){
+            StdOut.print("Perfil encontrado: " + perfilEncontrado.getNombreDeUsuario() );
+            return;
+        }
+        StdOut.print("Perfil no encontrado");
     }
 
     public static ListaNexoDoble lecturaArchivos(ListaNexoDoble perfiles) throws IOException {
